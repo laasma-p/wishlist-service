@@ -5,6 +5,9 @@ const purchaseRoutes = require("./routes/purchase-routes");
 
 const app = express();
 
+app.set("view engine", "ejs");
+app.set("views", "views");
+
 const PORT = 3000;
 
 app.use("/wishlist", wishlistRoutes);
