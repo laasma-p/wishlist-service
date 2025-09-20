@@ -11,7 +11,7 @@ router.post("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  // getting a specific wishlist
+  res.render("wishlist");
 });
 
 router.put("/:id", (req, res, next) => {
