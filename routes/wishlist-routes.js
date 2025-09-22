@@ -1,9 +1,11 @@
 const express = require("express");
+const { Wishlist } = require("../models");
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.render("wishlists");
+router.get("/", async (req, res, next) => {
+  const wishlists = await Wishlist.findAll();
+  res.render("wishlists", { wishlists });
 });
 
 router.post("/", (req, res, next) => {
