@@ -1,5 +1,5 @@
 const express = require("express");
-const { Wishlist } = require("../models");
+const { Wishlist, Item } = require("../models");
 
 const router = express.Router();
 
@@ -12,8 +12,10 @@ router.post("/", (req, res, next) => {
   // adding a wishlist
 });
 
-router.get("/:id", (req, res, next) => {
-  res.render("wishlist");
+router.get("/:id", async (req, res, next) => {
+  const wishlist = await Wishlist.findByPk(req.params.id);
+  const items = await Item.findAll({ where: { wishlistId: req.params.id } });
+  res.render("wishlist", { wishlist, items });
 });
 
 router.put("/:id", (req, res, next) => {
